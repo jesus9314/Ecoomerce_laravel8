@@ -9,7 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id','created_at','updated_at']; 
+    const BORRADOR = 1;
+    const PUBLICADO = 2;
+
+    protected $guarded = ['id','created_at','updated_at'];
 
     //relacion uno a muchos
     public function sizes(){
@@ -25,7 +28,7 @@ class Product extends Model
     }
     //relacion muchos a muchos
     public function colors(){
-        return $this->hasMany(Color::class);
+        return $this->belongsToMany(Color::class);
     }
     //relacion uno a muchos polimorfica
     public function images(){
