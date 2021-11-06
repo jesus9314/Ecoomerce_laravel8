@@ -22,8 +22,8 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
-            $table->unsignedBigInteger('brandy_id');
-            $table->foreign('brandy_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->integer('quantity')->nullable();
             $table->enum('status',[Product::BORRADOR,Product::PUBLICADO])->default(Product::BORRADOR);
             $table->timestamps();
