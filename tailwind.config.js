@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
+const { after } = require('lodash');
 
 module.exports = {
     //mode: 'jit',
@@ -21,6 +22,9 @@ module.exports = {
                 greenLime: colors.lime,
             }
         },
+    },
+    variants:{
+        opacity:({after}) => after(["disabled"]),
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
