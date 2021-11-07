@@ -17,7 +17,17 @@
             @endforeach
         </select>
     </div>
-    <div class="flex mt-4">
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">Stock disponible:</span>
+
+        @if ($quantity)
+            {{$quantity}}
+        @else
+            {{$product->stock}}
+        @endif
+
+    </p>
+    <div class="flex">
         <div class="mr-4">
             <x-jet-secondary-button
             disabled
@@ -38,8 +48,12 @@
         </div>
         <div class="flex-1">
             <x-button
+            x-bind:disabled="$wire.qty > $wire.quantity"
             x-bind:disabled="!$wire.quantity"
-            color="orange" class="w-full">
+            color="orange" class="w-full"
+            wire:click="addItem"
+            wire:loading.attr="disabled"
+            wire:target="addItem">
                 Agregar al carrito de compras
             </x-button>
         </div>
