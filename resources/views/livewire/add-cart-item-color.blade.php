@@ -1,7 +1,7 @@
 <div x-data>
     <p class="text-xl text-gray-700">Color:</p>
-    <select class="form-control w-full" wire:model="color_id">
-        <option value="" selected disabled>Seleccionar un color</option>
+    <select class="form-control w-full capitalize" wire:model="color_id">
+        <option value="" selected disabled class="capitalize">Seleccionar un color</option>
         @foreach ($colors as $color)
             <option class="capitalize" value="{{$color->id}}">{{__($color->name)}}</option>
         @endforeach

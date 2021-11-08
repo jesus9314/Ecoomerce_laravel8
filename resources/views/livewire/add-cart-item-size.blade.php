@@ -10,7 +10,7 @@
     </div>
     <div class="mt-2">
         <p class="text-xl text-gray-700">Color:</p>
-        <select wire:model="color_id" class="form-control w-full">
+        <select wire:model="color_id" class="form-control w-full capitalize">
             <option value="" selected disabled>Selecciona un color</option>
             @foreach ($colors as $color)
                 <option class="capitalize" value="{{$color->id}}">{{__($color->name)}}</option>
