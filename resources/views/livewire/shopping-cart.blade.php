@@ -87,7 +87,7 @@
                     </p>
                 </div>
                 <div>
-                    <x-button-enlace>
+                    <x-button-enlace href="{{route('orders.create')}}">
                         CONTINUAR
                     </x-button-enlace>
                 </div>
