@@ -9,7 +9,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Livewire\ShoppingCart;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Controllers\WebhooksController;
-
+use App\Http\Livewire\PaymentOrder;
+use App\Models\Order;
 
 Route::get('/', WelcomeController::class);
 
@@ -25,12 +26,24 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
+route::middleware(['auth'])->group(function(){
 
-Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
-Route::get('orders/{order}/payment',[OrderController::class, 'payment'])->name('orders.payment');
+    Route::get('orders/create', CreateOrder::class)->name('orders.create');
 
-Route::get('orders/{order}/pay',[OrderController::class, 'pay'])->name('orders.pay');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
-Route::post('webhook', WebhooksController::class);
+    Route::get('orders/{order}/payment',PaymentOrder::class)->name('orders.payment');
+
+    Route::get('orders/{order}/pay',[OrderController::class, 'pay'])->name('orders.pay');
+
+    Route::post('webhook', WebhooksController::class);
+
+});
+
+Route::get('prueba', function () {
+
+
+    return "se formateó con éxito";
+});

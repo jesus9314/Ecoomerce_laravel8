@@ -50,30 +50,33 @@ function discount($item){
 
     if ($item->options->size_id) {
 
+        // actualiza existencias con medida y color
+
         $size = Size::find($item->options->size_id);
 
-        $size->colors()->detach($item->options->color_id);
+        $size->colors()->updateExistingPivot(
 
-        $size->colors()->attach([
-            $item->options->color_id => ['quantity' => $qty_available]
-        ]);
+            $item->options->color_id , ['quantity'=> $qty_available]
 
-    }elseif($item->options->color_id){
+        );
 
-        $product->colors()->detach($item->options->color_id);
+      }elseif($item->options->color_id){
 
-        $product->colors()->attach([
-            $item->options->color_id => ['quantity' => $qty_available]
-        ]);
+        // actualiza existencias con color
 
+        $product->colors()->updateExistingPivot(
 
-    }else{
+            $item->options->color_id , ['quantity'=> $qty_available]
 
+        );
+
+      }else{
 
         $product->quantity = $qty_available;
+
         $product->save();
 
-    }
+      }
 
 }
 
@@ -86,29 +89,32 @@ function increase($item){
 
     if ($item->options->size_id) {
 
+        // actualiza existencias con medida y color
+
         $size = Size::find($item->options->size_id);
 
-        $size->colors()->detach($item->options->color_id);
+        $size->colors()->updateExistingPivot(
 
-        $size->colors()->attach([
-            $item->options->color_id => ['quantity' => $quantity]
-        ]);
+            $item->options->color_id , ['quantity'=> $quantity]
 
-    }elseif($item->options->color_id){
+        );
 
-        $product->colors()->detach($item->options->color_id);
+      }elseif($item->options->color_id){
 
-        $product->colors()->attach([
-            $item->options->color_id => ['quantity' => $quantity]
-        ]);
+        // actualiza existencias con color
 
+        $product->colors()->updateExistingPivot(
 
-    }else{
+            $item->options->color_id , ['quantity'=> $quantity]
 
+        );
+
+      }else{
 
         $product->quantity = $quantity;
+
         $product->save();
 
-    }
+      }
 
 }

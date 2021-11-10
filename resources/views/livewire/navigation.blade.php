@@ -1,4 +1,4 @@
-<header class="bg-trueGray-700 sticky top-0 z-50" x-data="dropdown()">
+<header class="bg-trueGray-700 sticky top-0" style="z-index:900;" x-data="dropdown()">
     <div class="container flex items-center h-16 justify-between md:justify-start">
         <a :class="{'bg-opacity-100 text-orange-500' : open}"
         x-on:click="show()"
@@ -29,7 +29,11 @@
                     </div>
 
                     <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                        {{ __('Perfil') }}
+                        {{ __('Profile') }}
+                    </x-jet-dropdown-link>
+
+                    <x-jet-dropdown-link href="{{ route('orders.index') }}">
+                        Mis Órdenes
                     </x-jet-dropdown-link>
 
                     <div class="border-t border-gray-100"></div>
@@ -41,7 +45,7 @@
                         <x-jet-dropdown-link href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('Desconectarse') }}
+                            {{ __('Logout') }}
                         </x-jet-dropdown-link>
                     </form>
                 </x-slot>
