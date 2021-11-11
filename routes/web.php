@@ -41,9 +41,3 @@ route::middleware(['auth'])->group(function(){
     Route::post('webhook', WebhooksController::class);
 
 });
-
-Route::get('prueba', function () {
-
-
-    return "se formateó con éxito";
-});
