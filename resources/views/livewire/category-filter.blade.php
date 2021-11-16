@@ -42,7 +42,7 @@
                 <li class="bg-white rounded-lg shadow">
                     <article>
                         <figure>
-                            <img class="h-48 w-full object-cover object-center" src="{{Storage::url($product->images->first()->url)}}" alt="">
+                            <img class="h-48 w-full object-cover object-center" src="{{Storage::url($product->images->first()['url'])}}" alt="">
                         </figure>
                         <div class="px-4 py-6">
                             <h1 class="text-lg font-semibold">
