@@ -1,9 +1,10 @@
 <x-app-layout>
     <div class="container py-12">
         <section class="grid grid-cols-5 gap-6 text-white">
-            <a href="{{route('orders.index')."?status=1"}}" class="bg-red-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
+            <a href="{{ route('orders.index') . '?status=1' }}"
+                class="bg-red-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
                 <p class="text-center text-2xl">
-                    {{$status['pendiente']}}
+                    {{ $status['pendiente'] }}
                 </p>
                 <p class="uppercase text-center">Pendiente</p>
                 <p class="text-center text-2xl mt-2">
@@ -11,9 +12,10 @@
                 </p>
             </a>
 
-            <a href="{{route('orders.index')."?status=2"}}" class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
+            <a href="{{ route('orders.index') . '?status=2' }}"
+                class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
                 <p class="text-center text-2xl">
-                    {{$status['recibido']}}
+                    {{ $status['recibido'] }}
                 </p>
                 <p class="uppercase text-center">Recibido</p>
                 <p class="text-center text-2xl mt-2">
@@ -21,9 +23,10 @@
                 </p>
             </a>
 
-            <a href="{{route('orders.index')."?status=3"}}" class="bg-yellow-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
+            <a href="{{ route('orders.index') . '?status=3' }}"
+                class="bg-yellow-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
                 <p class="text-center text-2xl">
-                    {{$status['enviado']}}
+                    {{ $status['enviado'] }}
                 </p>
                 <p class="uppercase text-center">Enviado</p>
                 <p class="text-center text-2xl mt-2">
@@ -31,9 +34,10 @@
                 </p>
             </a>
 
-            <a href="{{route('orders.index')."?status=4"}}" class="bg-pink-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
+            <a href="{{ route('orders.index') . '?status=4' }}"
+                class="bg-pink-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
                 <p class="text-center text-2xl">
-                    {{$status['entregado']}}
+                    {{ $status['entregado'] }}
                 </p>
                 <p class="uppercase text-center">Entregado</p>
                 <p class="text-center text-2xl mt-2">
@@ -41,9 +45,10 @@
                 </p>
             </a>
 
-            <a href="{{route('orders.index')."?status=5"}}" class="bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
+            <a href="{{ route('orders.index') . '?status=5' }}"
+                class="bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4 shadow-lg">
                 <p class="text-center text-2xl">
-                    {{$status['anulado']}}
+                    {{ $status['anulado'] }}
                 </p>
                 <p class="uppercase text-center">Anulado</p>
                 <p class="text-center text-2xl mt-2">
@@ -56,33 +61,34 @@
             <ul>
                 @foreach ($orders as $order)
                     <li>
-                        <a href="{{route('orders.show',$order)}}" class="flex items-center py-2 px-4 hover:bg-gray-100">
+                        <a href="{{ route('orders.show', $order) }}"
+                            class="flex items-center py-2 px-4 hover:bg-gray-100">
                             <span class="w-12 text-center">
                                 @switch($order->status)
                                     @case(1)
                                         <i class="fas fa-business-time text-red-500 opacity-50"></i>
-                                        @break
+                                    @break
                                     @case(2)
                                         <i class="fas fa-credit-card text-gray-500 opacity-50"></i>
-                                        @break
+                                    @break
                                     @case(3)
                                         <i class="fas fa-truck text-yellow-500 opacity-50"></i>
-                                        @break
+                                    @break
                                     @case(4)
                                         <i class="fas fa-check-circle text-pink-500 opacity-50"></i>
-                                        @break
+                                    @break
                                     @case(5)
                                         <i class="fas fa-times-circle text-green-500 opacity-50"></i>
-                                        @break
+                                    @break
                                     @default
 
                                 @endswitch
                             </span>
 
                             <span>
-                                Orden: {{$order->id}}
+                                Orden: {{ $order->id }}
                                 <br>
-                                {{$order->created_at->format('d/m/y')}}
+                                {{ $order->created_at->format('d/m/y') }}
                             </span>
 
                             <div class="ml-auto">
@@ -90,19 +96,19 @@
                                     @switch($order->status)
                                         @case(1)
                                             Pendiente
-                                            @break
+                                        @break
                                         @case(2)
                                             Recibido
-                                            @break
+                                        @break
                                         @case(3)
                                             Enviado
-                                            @break
+                                        @break
                                         @case(4)
                                             Entregado
-                                            @break
+                                        @break
                                         @case(5)
                                             Anullado
-                                            @break
+                                        @break
                                         @default
 
                                     @endswitch
@@ -111,7 +117,7 @@
                                 <br>
 
                                 <span class="text-sm">
-                                    {{$order->total}} USD
+                                    {{ $order->total }} USD
                                 </span>
                             </div>
 

@@ -14,34 +14,32 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('login') }}
-                </x-jet-button>
+            <div class="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-coolGray-900 dark:text-coolGray-100">
+                <div class="mb-8 text-center">
+                    <h1 class="my-3 text-4xl font-bold">Iniciar Sesión</h1>
+                    <p class="text-sm dark:text-coolGray-400">Inicia sesión para ingresar a tu cuenta</p>
+                </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm">{{ __('Email') }}</label>
+                            <input type="email" name="email" id="email" placeholder="direccion@correo.com" name="email" :value="old('email')" required autofocus class="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label for="password" class="text-sm">{{ __('Password') }}</label>
+                                <a href="#" class="text-xs hover:underline dark:text-coolGray-400">{{ __('Forgot your password?') }}</a>
+                            </div>
+                            <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="*****" class="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div>
+                            <button type="submit" class="w-full px-8 py-3 rounded-md dark:bg-violet-400 dark:text-coolGray-900">{{ __('login') }}</button>
+                        </div>
+                        <p class="px-6 text-sm text-center dark:text-coolGray-400">Don't have an account yet?
+                            <a href="#" class="hover:underline dark:text-violet-400">Sign up</a>.
+                        </p>
+                    </div>
             </div>
         </form>
     </x-jet-authentication-card>

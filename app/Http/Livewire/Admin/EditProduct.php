@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class EditProduct extends Component
 {
-    public $product, $categories, $subcategories, $brands;
+    public $product, $categories, $subcategories, $brands,$slug;
 
     public $category_id;
 
@@ -33,8 +33,9 @@ class EditProduct extends Component
         $this->categories = Category::all();
         $this->category_id = $product->subcategory->category->id;
         $this->subcategories = Subcategory::where('category_id',$this->category_id)->get();
-        $this->brands =Brand::whereHas('categories',function(Builder $query){
-            $query->where('category_id',$this->category_id);
+        $this->slug = $this->product->slug;
+        $this->brands = Brand::whereHas('categories', function(Builder $query){
+            $query->where('category_id', $this->category_id);
         })->get();
     }
 
@@ -49,7 +50,6 @@ class EditProduct extends Component
             $query->where('category_id',$value);
         })->get();
 
-        /*$this->reset(['subcategory_id','brand_id']);*/
         $this->product->subcategory_id = "";
         $this->product->brand_id = "";
     }
@@ -59,23 +59,22 @@ class EditProduct extends Component
     }
 
     public function save(){
-
         $rules = $this->rules;
-
         $rules['slug'] = 'required|unique:products,slug,' . $this->product->id;
 
         if ($this->product->subcategory_id) {
-            if (!$this->Subcategory->color && !$this->Subcategory->size) {
+            if (!$this->subcategory->color && !$this->subcategory->size) {
                 $rules['product.quantity'] = 'required|numeric';
             }
         }
 
         $this->validate($rules);
-        $this->product->slug = $this->slug;
-        $this->product->save();
 
-        $this->emit('saved');
+        $this->product->slug = $this->slug;
+
+        $this->product->save();
     }
+
 
     public function render()
     {
